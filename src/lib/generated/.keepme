@@ -1,0 +1,1 @@
+This is where your schema should be generated via `stately schema generate --language ts --schema-id <your_schema_id> ./src/lib/generated`
