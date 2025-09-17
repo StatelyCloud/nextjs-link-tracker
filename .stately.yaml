@@ -1,2 +1,2 @@
-language: typescript
-command: npm run dev
+language: "typescript"
+command: "npm run dev"
