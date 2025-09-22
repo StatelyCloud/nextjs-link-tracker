@@ -23,77 +23,34 @@ Before getting started, make sure you have:
 
 ## 🚀 Quick Start
 
-### 🗄️ StatelyDB Setup
+Click this button and follow the instructions to get started.
 
-First, we'll set up your StatelyDB store and schema. StatelyDB stores data in "Stores" - think of them as your database instances.
+[![Build with Stately](https://gist.githubusercontent.com/ryan-stately/51a07a4b3123f5cb89c8b9a1f3edf214/raw/158cb441aa65d05dd1a75b85dffad2feeb473f6b/build-icon.svg)](https://console.stately.cloud/new?repo=https%3A%2F%2Fgithub.com%2FStatelyCloud%2Fnextjs-link-tracker)
 
-**🏪 Create a Store**
-
-- Go to https://console.stately.cloud/
-- Click "New Store" → name it "Link Tracker"
-- Note your **StoreID** and **SchemaID** (you'll need these later)
-
-**🔑 Create Access Key**
-
-- Go to Access Keys tab in your store
-- Create new key named "link tracker"
-- Copy the access key - this allows your app to connect securely
-
-**📝 Publish Schema**
-
-- Click on your SchemaID to open the schema editor
-- Paste this schema and click "Publish" to define your data structure:
-
-```tsx
-import { itemType, string, uint } from "@stately-cloud/schema";
-
-itemType("Profile", {
-  keyPath: "/p-:id",
-  fields: {
-    id: { type: string },
-    fullName: { type: string },
-  },
-});
-
-itemType("Link", {
-  keyPath: "/p-:profile_id/l-:id",
-  fields: {
-    id: { type: uint, initialValue: "sequence" },
-    profile_id: { type: string },
-    title: { type: string },
-    url: { type: string },
-    emoji: { type: string, required: false },
-  },
-});
-```
 
 ### 💻 Local Development
 
-Now let's get the Next.js app running locally with your StatelyDB backend.
+These steps are provided as reference but you should have preformed the same steps when you bootstrapped your project above.
 
 **📥 Clone and install**
 
-```bash
+```bash setup Clone the Repository
 git clone https://github.com/StatelyCloud/vercel-starter-template.git
 cd vercel-starter-template
+```
+
+```bash setup Install & Login
 npm install
+npm run login
 ```
 
-**🛠️ Install Stately CLI**
-
-The Stately CLI generates type-safe clients from your schema:
-
-```bash
-curl -sL https://stately.cloud/install | sh
-stately login
-```
 
 **⚙️ Generate SDK**
 
 Generate a TypeScript client that matches your schema perfectly:
 
-```bash
-stately schema generate --language ts --schema-id <your_schema_id> ./src/lib/generated
+```bash setup Generate the SDK
+npm run generate -- --language ts --schema-id $SCHEMA_ID ./src/lib/generated
 ```
 
 **🔧 Configure environment**
@@ -117,7 +74,7 @@ STATELY_ACCESS_KEY=your_access_key
 
 Launch your Next.js app connected to StatelyDB:
 
-```bash
+```bash setup Run the Application
 npm run dev
 ```
 
